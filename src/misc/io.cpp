@@ -165,7 +165,10 @@ bool Anvil::IO::enumerate_files_in_directory(const std::string&        in_path,
                 {
                     std::wstring file_name_wide          (find_data.cFileName);
                     std::wstring file_name_with_path_wide(current_path_wide + file_name_wide);
-                    std::string  file_name               (file_name_with_path_wide.begin(), file_name_with_path_wide.end() );
+                    //std::string  file_name               (file_name_with_path_wide.begin(), file_name_with_path_wide.end() );
+                    std::string  file_name(
+                        reinterpret_cast<const char*>(reinterpret_cast<const char*>(&*file_name_with_path_wide.begin())), 
+                        reinterpret_cast<const char*>(&*file_name_with_path_wide.end()));
 
                     out_result_ptr->push_back(file_name);
                 }
