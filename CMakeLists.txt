@@ -263,6 +263,7 @@ else()
 endif()
 
 add_library(Anvil STATIC ${SRC_LIST})
+target_include_directories(Anvil PUBLIC "${Anvil_SOURCE_DIR}/include")
 
 if (WIN32)
     if (ANVIL_LINK_WITH_GLSLANG)
